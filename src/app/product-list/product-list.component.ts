@@ -8,6 +8,8 @@ import {Product} from '../model/product.model';
 })
 export class ProductListComponent {
 
+  selectedProduct: Product | undefined;
+
   product1: Product = {
     id:20,
     name: 'Le produit 1',
@@ -26,5 +28,8 @@ export class ProductListComponent {
     category: 'Diverse aussi'
   }
 
+  receiveProductclicked(product: Product){
+    this.selectedProduct = product;
 
+  }
 }

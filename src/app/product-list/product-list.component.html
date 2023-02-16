@@ -1,3 +1,4 @@
 <h2>Products List</h2>
-<app-product [product]="product1"></app-product>
-<app-product [product]="product2"></app-product>
+ <p [hidden]="!selectedProduct"> <span (click)="selectedProduct = undefined">X</span> You have selected: {{selectedProduct?.name}}({{selectedProduct?.category}})</p>
+<app-product [product]="product1" (out)="receiveProductclicked($event)"></app-product>
+<app-product [product]="product2" (out)="receiveProductclicked($event)"></app-product>

@@ -1,4 +1,4 @@
-import {Component, HostListener, Input} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {Product} from '../model/product.model';
 
 @Component({
@@ -10,9 +10,12 @@ export class ProductComponent {
   @Input()
   product!:Product;
 
+  @Output()
+  out = new EventEmitter<Product>();
+
   @HostListener('click')
   clickOnCompo(){
-    console.log("Hello world")
+    this.out.emit(this.product)
   }
 
 }
