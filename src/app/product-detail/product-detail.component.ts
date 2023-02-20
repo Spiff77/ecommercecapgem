@@ -28,7 +28,8 @@ export class ProductDetailComponent implements OnInit{
 
   deleteProduct(){
     this.pService.remove(this.product.id)
-      .subscribe(()=> this.router.navigateByUrl('/products'))
+      .subscribe(() =>
+        this.router.navigateByUrl('/products'))
   }
 
 }

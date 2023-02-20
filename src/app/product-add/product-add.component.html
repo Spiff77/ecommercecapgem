@@ -1,4 +1,11 @@
 <h3>Add product</h3>
+
+<ul *ngIf="formSubmitted">
+  <li *ngIf="myForm.controls['name'].errors?.['required']">Le nom est obligatoire</li>
+  <li *ngIf="myForm.controls['name'].errors?.['minlength']">Le nom est trop court</li>
+  <li *ngIf="myForm.controls['supplier'].get('id')?.errors?.['required']">Le supplier est obligatoire</li>
+</ul>
+
 <form [formGroup]="myForm" (ngSubmit)="submitForm()">
   <div>
     <label for="name">Name</label>
@@ -24,5 +31,13 @@
     <label for="active">Active</label>
     <input type="checkbox" id="active" formControlName="active" />
   </div>
+
+  <div formGroupName="supplier">
+    <label for="idSupp">sSupplier</label>
+    <select formControlName="id" id="idSupp">
+      <option *ngFor="let s of suppliers" [value]="s.id">{{s.companyName}}</option>
+    </select>
+  </div>
+
   <button type="submit">Send</button>
 </form>

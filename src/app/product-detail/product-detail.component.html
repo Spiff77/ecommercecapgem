@@ -5,6 +5,13 @@
   <li>{{product?.price}}</li>
   <li>{{product?.category}}</li>
   <li>{{product?.active}}</li>
+  <li *ngIf="product?.supplier">Supplier:
+    <ul>
+      <li>{{product.supplier.companyName}}</li>
+      <li>{{product.supplier.ca}}</li>
+      <li>{{product.supplier.bankAccountNumber}}</li>
+    </ul>
+  </li>
 </ul>
 
 <button (click)="deleteProduct()">Delete from db</button>
