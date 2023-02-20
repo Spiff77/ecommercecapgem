@@ -1,4 +1,4 @@
 <h2>Products List</h2>
 <input type="text" [(ngModel)]="filterStr">
  <p *ngIf="selectedProduct"> <span (click)="selectedProduct = undefined">X</span> You have selected: {{selectedProduct?.name}}({{selectedProduct?.category}})</p>
-<app-product *ngFor="let p of getProductsFiltered()" [product]="p" (out)="receiveProductclicked($event)"></app-product>
+<app-product *ngFor="let p of getProductsFiltered()"  [product]="p" (out)="receiveProductclicked($event)"></app-product>

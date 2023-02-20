@@ -3,3 +3,11 @@
   background-color: lightcyan;
   cursor: pointer;
 }
+.high-price{
+  color: red;
+  font-weight: bold;
+}
+.low-price{
+  color: green;
+  text-decoration: underline;
+}

@@ -1,30 +1,26 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../model/product.model';
+import {ProductService} from '../product.service';
+import {HttpClient} from '@angular/common/http';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit{
 
   selectedProduct: Product | undefined;
-  products: Product[] = [{
-    id:20,
-    name: 'Le produit 1',
-    description: 'Desc du produit 1',
-    active: true,
-    price: 20,
-    category: 'Diverse'
-  },{
-    id:21,
-    name: 'Le produit 2',
-    description: 'Desc du produit 2',
-    active: true,
-    price: 200,
-    category: 'Diverse aussi'
-  }]
+  products: Product[] = [];
   filterStr: string = '';
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.productService.findAll()
+      .subscribe(prods => this.products = prods)
+  }
 
   receiveProductclicked(product: Product){
     this.selectedProduct = product;
@@ -33,4 +29,5 @@ export class ProductListComponent {
   getProductsFiltered(){
     return this.products.filter(p => p.name.includes(this.filterStr))
   }
+
 }

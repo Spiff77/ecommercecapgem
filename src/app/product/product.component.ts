@@ -1,5 +1,6 @@
 import {Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import {Product} from '../model/product.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -13,9 +14,19 @@ export class ProductComponent {
   @Output()
   out = new EventEmitter<Product>();
 
+  constructor(private router: Router) {
+  }
+
   @HostListener('click')
   clickOnCompo(){
-    this.out.emit(this.product)
+    this.router.navigate(['/products', this.product.id])
+  }
+
+  getPriceClass(){
+    return {
+      'low-price': this.product.price <= 20,
+      'high-price': this.product.price > 20
+    }
   }
 
 }
